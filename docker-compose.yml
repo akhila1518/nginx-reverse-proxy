@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+  nginx1:
+    image: nginx
+    volumes:
+      - ./nginx1:/usr/share/nginx/html
+    networks:
+      - nginx-network
+
+  nginx2:
+    image: nginx
+    volumes:
+      - ./nginx2:/usr/share/nginx/html
+    networks:
+      - nginx-network
+
+  nginx-proxy:
+    image: nginx
+    volumes:
+      - ./nginx-proxy.conf:/etc/nginx/nginx.conf:ro
+    ports:
+      - "80:80"
+    networks:
+      - nginx-network
+
+networks:
+  nginx-network:
+    driver: bridge
