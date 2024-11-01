@@ -2,16 +2,16 @@ version: '3'
 
 services:
   nginx1:
-    image: nginx
-    volumes:
-      - ./nginx1:/usr/share/nginx/html
+    build:
+      context: ./nginx1
+      dockerfile: Dockerfile
     networks:
       - nginx-network
 
   nginx2:
-    image: nginx
-    volumes:
-      - ./nginx2:/usr/share/nginx/html
+    build:
+      context: ./nginx2
+      dockerfile: Dockerfile
     networks:
       - nginx-network
 
@@ -27,3 +27,4 @@ services:
 networks:
   nginx-network:
     driver: bridge
+
